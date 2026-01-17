@@ -1,3 +1,7 @@
+## 0.0.2
+
+* 添加时间工具类 TimeUtils
+
 ## 0.0.1
 
-* TODO: Describe initial release.
+* 初始版本发布
