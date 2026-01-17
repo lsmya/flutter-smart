@@ -3,6 +3,8 @@ import 'package:flutter_smart/flutter_smart.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// 初始化SpUtils
   await SpUtils.init();
   runApp(const MyApp());
 }
@@ -25,17 +27,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Plugin example app')),
-        body: ListView(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                SpUtils.putObject("key", "哈哈哈哈哈");
-                print(SpUtils.getString("key"));
-              },
-              child: Text("国际化"),
-            ),
-          ],
-        ),
+        body: Center(child: Text("MAIN")),
       ),
     );
   }
