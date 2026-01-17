@@ -1,1 +1,2 @@
 *.dart linguist-language=dart
+.cc linguist-language=dart
