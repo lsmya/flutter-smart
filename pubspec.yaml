@@ -1,7 +1,7 @@
 name: flutter_smart
 description: Flutter toolkit.
 version: 0.0.2
-homepage: https://github.com/lsmyan/flutter_smart
+homepage: https://github.com/lsmya/flutter_smart
 
 topics:
   - toolkit
@@ -11,8 +11,11 @@ environment:
   flutter: '>=3.3.0'
 
 dependencies:
+  cached_network_image: ^3.4.1
+  event_bus: ^2.0.1
   flutter:
     sdk: flutter
+  flutter_screenutil: ^5.9.3
   shared_preferences: ^2.5.4
 
 dev_dependencies:
@@ -27,3 +30,7 @@ platforms:
   macos:
   windows:
   web:
+
+flutter:
+  assets:
+    - assets/images/
