@@ -1,0 +1,25 @@
+# Git related
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Build
+build/
+.dart_tool/
+
+# Example app
+example/build/
+example/.dart_tool/
+example/.metadata
+
+# Documentation (keep only essential)
+API.md
+
+# Other
+.metadata
