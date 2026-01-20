@@ -1,6 +1,10 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.0.3] - 2026-01-20
+
+### Fixed
+- 修复部分扩展方法的空安全处理
 
 ## [0.0.2] - 2026-01-19
 
