@@ -5,3 +5,4 @@ export 'screen_adapter_utils.dart';
 export 'screen_utils.dart';
 export 'shared_preferences_utils.dart';
 export 'time_utils.dart';
+export 'router_utils.dart';
