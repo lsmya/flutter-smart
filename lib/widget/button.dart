@@ -19,9 +19,9 @@ class Button extends StatelessWidget {
   final VoidCallback? onLongPress;
   final VoidCallback? onDoubleTap;
 
-  const Button({
+  const Button(
+    this.data, {
     super.key,
-    required this.data,
     this.textColor,
     this.fontSize,
     this.fontWeight,

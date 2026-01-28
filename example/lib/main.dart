@@ -47,6 +47,8 @@ class _HomePageState extends State<HomePage> with EventBusMixin {
   String _eventMessage = '暂无事件';
   int _counter = 0;
 
+  String? localPhotoPath;
+
   @override
   void initState() {
     super.initState();
@@ -236,6 +238,55 @@ class _HomePageState extends State<HomePage> with EventBusMixin {
               ],
             ),
           ),
+          // 7. 缓存图片示例
+          _buildSection(
+            title: '7. 选中照片',
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    Button(
+                      "选中照片",
+                      backgroundColor: Colors.blue,
+                      textColor: Colors.white,
+                      padding: .symmetric(vertical: 8.px, horizontal: 12.px),
+                      borderRadius: 8.px,
+                      onTap: () async {
+                        final path = await MediaPicker.chooseImage();
+                        setState(() {
+                          localPhotoPath = path;
+                        });
+                        print("选中照片：$path");
+                      },
+                    ),
+                    SizedBox(height: 16.px),
+                    Button(
+                      "拍摄照片",
+                      backgroundColor: Colors.blue,
+                      textColor: Colors.white,
+                      padding: .symmetric(vertical: 8.px, horizontal: 12.px),
+                      borderRadius: 8.px,
+                      onTap: () async {
+                        final path = await MediaPicker.takeImage();
+                        setState(() {
+                          localPhotoPath = path;
+                        });
+                        print("拍摄照片：$path");
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(width: 16.px),
+                CachedImage(
+                  url: localPhotoPath,
+                  width: 100.px,
+                  height: 100.px,
+                  fit: BoxFit.cover,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -265,5 +316,6 @@ class _HomePageState extends State<HomePage> with EventBusMixin {
 // 自定义事件类
 class CounterEvent {
   final int count;
+
   CounterEvent(this.count);
 }
