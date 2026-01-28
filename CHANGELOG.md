@@ -1,6 +1,25 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [0.0.4] - 2026-01-21
+
+### Added
+- 添加 `DateUtils` 日期处理工具类
+    - `format()` - 自定义日期格式化
+    - `timeAgo()` - 相对时间显示（如"3分钟前"）
+- 添加 `extension_int.dart` 整数扩展
+    - `toRomanNumerals()` - 转换为罗马数字
+    - `isEvenOrOdd()` - 判断奇偶数
+
+### Changed
+- 优化 `EventBusUtils` 事件订阅性能
+- 改进 `GradientLayout` 组件的渐变渲染效率
+
+### Fixed
+- 修复 `JsonUtils.mapToList()` 在空输入时的崩溃问题
+- 修复 `extension_widget.dart` 中 `onTap()` 事件穿透问题
+
 ## [0.0.3] - 2026-01-20
 
 ### Fixed
