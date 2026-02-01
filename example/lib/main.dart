@@ -6,7 +6,7 @@ Future<void> main() async {
 
   /// 初始化SpUtils
   await SpUtils.init();
-  RouterUtils.init(routes: [HomePage.createRouter()]);
+  AppRouter.init(routes: [HomePage.createRouter()]);
   runApp(ScreenAdapterUtils.init(child: const MyApp()));
 }
 
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: RouterUtils.goRouter,
+      routerConfig: AppRouter.goRouter,
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       title: 'Flutter Smart Demo',
       debugShowCheckedModeBanner: false,
@@ -40,7 +40,7 @@ class HomePage extends StatefulWidget {
   static final route = "/";
 
   static dynamic createRouter() {
-    return RouterUtils.createRouteByParam(
+    return AppRouter.createRouteByParam(
       route,
       builder: (context, state, pathParameters, extra) => HomePage._(),
     );

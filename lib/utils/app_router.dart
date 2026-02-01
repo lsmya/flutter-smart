@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 /// 基于 go_router 的路由工具类
-class RouterUtils {
-  RouterUtils._();
+class AppRouter {
+  AppRouter._();
 
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -35,6 +35,10 @@ class RouterUtils {
       redirect: redirect,
       observers: observers,
       debugLogDiagnostics: debugLogDiagnostics,
+      errorBuilder: (context, state) {
+        print("====");
+        return Scaffold(body: SizedBox(),);
+      },
     );
   }
 
