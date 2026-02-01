@@ -6,9 +6,7 @@ Future<void> main() async {
 
   /// 初始化SpUtils
   await SpUtils.init();
-  RouterUtils.init(
-    routes: [RouterUtils.createRoute(path: '/', child: const HomePage())],
-  );
+  RouterUtils.init(routes: [HomePage.createRouter()]);
   runApp(ScreenAdapterUtils.init(child: const MyApp()));
 }
 
@@ -37,7 +35,16 @@ class _MyAppState extends State<MyApp> {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage._();
+
+  static final route = "/";
+
+  static dynamic createRouter() {
+    return RouterUtils.createRouteByParam(
+      route,
+      builder: (context, state, pathParameters, extra) => HomePage._(),
+    );
+  }
 
   @override
   State<HomePage> createState() => _HomePageState();

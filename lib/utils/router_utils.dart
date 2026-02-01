@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 
 /// 基于 go_router 的路由工具类
 class RouterUtils {
+  RouterUtils._();
+
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
@@ -116,21 +118,29 @@ class RouterUtils {
   }
 
   /// 创建路由的快捷方法
-  static GoRoute createRoute({
-    required String path,
-    required Widget child,
+  static GoRoute createRoute(String path, {required Widget child}) {
+    return createRouteByParam(path, builder: (context, state, _, _) => child);
+  }
+
+  /// 创建路由的快捷方法
+  static GoRoute createRouteByParam(
+    String path, {
+    required Function(
+      BuildContext context,
+      GoRouterState state,
+      Map<String, String> pathParameters,
+      Object? extra,
+    )?
+    builder,
     String? name,
-    GoRouterRedirect? redirect,
     List<RouteBase> routes = const <RouteBase>[],
   }) {
     return GoRoute(
       path: path,
       name: name ?? path,
-      builder: (context, state) => child,
-      redirect: redirect,
-      routes: routes,
+      builder: (context, state) {
+        return builder!(context, state, state.pathParameters, state.extra);
+      },
     );
   }
-
-  RouterUtils._();
 }
