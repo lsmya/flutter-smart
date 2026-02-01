@@ -18,6 +18,7 @@ class EditText extends StatelessWidget {
   final ValueChanged<String>? onChanged;
 
   final Widget? suffixIcon;
+  final Size? suffixIconSize;
 
   const EditText({
     super.key,
@@ -37,6 +38,7 @@ class EditText extends StatelessWidget {
     this.padding,
     this.onChanged,
     this.suffixIcon,
+    this.suffixIconSize,
   });
 
   @override
@@ -66,6 +68,14 @@ class EditText extends StatelessWidget {
         border: border ?? InputBorder.none,
         contentPadding: padding,
         suffixIcon: suffixIcon,
+        suffixIconConstraints: suffixIconSize == null
+            ? null
+            : BoxConstraints(
+                minWidth: suffixIconSize!.width,
+                minHeight: suffixIconSize!.height,
+                maxHeight: suffixIconSize!.height,
+                maxWidth: suffixIconSize!.width,
+              ),
       ),
     );
   }
