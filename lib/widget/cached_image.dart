@@ -11,7 +11,8 @@ class CachedImage extends StatelessWidget {
   final double? height;
   final BoxFit? fit;
   final BorderRadiusGeometry? borderRadius;
-  final double borderRadiusAll;
+  final double? borderRadiusAll;
+  final BoxBorder? border;
   final Function(String?)? onTap;
 
   const CachedImage({
@@ -24,7 +25,8 @@ class CachedImage extends StatelessWidget {
     this.width,
     this.height,
     this.borderRadius,
-    this.borderRadiusAll = 0,
+    this.borderRadiusAll,
+    this.border,
     this.onTap,
   });
 
@@ -33,43 +35,59 @@ class CachedImage extends StatelessWidget {
     final isNetImage =
         url != null &&
         (url!.startsWith("http://") || url!.startsWith("https://"));
-    final clipRRect = ClipRRect(
-      borderRadius: borderRadius ?? BorderRadius.circular(borderRadiusAll),
-      child: url == null
-          ? Image.asset(errorAssets!, fit: fit, width: width, height: height)
-          : isNetImage
-          ? CachedNetworkImage(
-              imageUrl: url!,
-              height: height,
-              width: width,
-              fit: fit,
-              placeholder: (context, url) => placeholderAssets != null
-                  ? Image.asset(
-                      placeholderAssets!,
-                      fit: fit,
-                      width: width,
-                      height: height,
-                    )
-                  : SizedBox(),
-              errorWidget: (context, url, error) => errorAssets != null
-                  ? Image.asset(
-                      errorAssets!,
-                      fit: fit,
-                      width: width,
-                      height: height,
-                    )
-                  : SizedBox(),
-            )
-          : Image.file(File(url!), fit: fit, width: width, height: height),
-    );
+    final imageChild = url == null
+        ? Image.asset(errorAssets!, fit: fit, width: width, height: height)
+        : isNetImage
+        ? CachedNetworkImage(
+            imageUrl: url!,
+            height: height,
+            width: width,
+            fit: fit,
+            placeholder: (context, url) => placeholderAssets != null
+                ? Image.asset(
+                    placeholderAssets!,
+                    fit: fit,
+                    width: width,
+                    height: height,
+                  )
+                : SizedBox(),
+            errorWidget: (context, url, error) => errorAssets != null
+                ? Image.asset(
+                    errorAssets!,
+                    fit: fit,
+                    width: width,
+                    height: height,
+                  )
+                : SizedBox(),
+          )
+        : Image.file(File(url!), fit: fit, width: width, height: height);
+
+    final clipRRect = (borderRadius != null || borderRadiusAll != null)
+        ? ClipRRect(
+            borderRadius:
+                borderRadius ?? BorderRadius.circular(borderRadiusAll ?? 0),
+            child: imageChild,
+          )
+        : imageChild;
+
+    final body = border == null
+        ? clipRRect
+        : Container(
+            decoration: BoxDecoration(
+              borderRadius:
+                  borderRadius ?? BorderRadius.circular(borderRadiusAll ?? 0),
+              border: border,
+            ),
+            child: clipRRect,
+          );
     if (onTap == null) {
-      return clipRRect;
+      return body;
     } else {
       return GestureDetector(
         onTap: () {
           onTap!.call(url);
         },
-        child: clipRRect,
+        child: body,
       );
     }
   }

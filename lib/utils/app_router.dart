@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'app_transitions.dart';
+
 /// 基于 go_router 的路由工具类
 class AppRouter {
   AppRouter._();
@@ -36,8 +38,7 @@ class AppRouter {
       observers: observers,
       debugLogDiagnostics: debugLogDiagnostics,
       errorBuilder: (context, state) {
-        print("====");
-        return Scaffold(body: SizedBox(),);
+        return Scaffold(body: SizedBox());
       },
     );
   }
@@ -122,8 +123,16 @@ class AppRouter {
   }
 
   /// 创建路由的快捷方法
-  static GoRoute createRoute(String path, {required Widget child}) {
-    return createRouteByParam(path, builder: (context, state, _, _) => child);
+  static GoRoute createRoute(
+    String path, {
+    required Widget child,
+    GoRouterPageBuilder? pageBuilder,
+  }) {
+    return createRouteByParam(
+      path,
+      builder: (context, state, _, _) => child,
+      pageBuilder: pageBuilder,
+    );
   }
 
   /// 创建路由的快捷方法
@@ -137,14 +146,22 @@ class AppRouter {
     )?
     builder,
     String? name,
+    GoRouterPageBuilder? pageBuilder,
     List<RouteBase> routes = const <RouteBase>[],
   }) {
     return GoRoute(
       path: path,
       name: name ?? path,
-      builder: (context, state) {
-        return builder!(context, state, state.pathParameters, state.extra);
-      },
+      pageBuilder:
+          pageBuilder ??
+          (context, state) {
+            return AppTransitions.buildSlideTransition(
+              state,
+              builder!(context, state, state.pathParameters, state.extra),
+            );
+          },
+      builder: (context, state) =>
+          builder!(context, state, state.pathParameters, state.extra),
     );
   }
 }

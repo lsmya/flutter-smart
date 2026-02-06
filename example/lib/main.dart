@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart/flutter_smart.dart';
 
+import 'pages/page1.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// 初始化SpUtils
   await SpUtils.init();
-  AppRouter.init(routes: [HomePage.createRouter()]);
+  AppRouter.init(routes: [HomePage.createRouter(), Page1.createRouter()]);
   runApp(ScreenAdapterUtils.init(child: const MyApp()));
 }
 
@@ -287,11 +289,26 @@ class _HomePageState extends State<HomePage> with EventBusMixin {
                 CachedImage(
                   url: localPhotoPath,
                   width: 100.px,
+                  border: .all(color: Colors.red, width: 1.px, style: .solid),
                   height: 100.px,
                   fit: BoxFit.cover,
                   borderRadius: BorderRadius.circular(50),
                 ),
               ],
+            ),
+          ),
+          // 8. 转场动画
+          _buildSection(
+            title: '8. 转场动画',
+            child: Button(
+              "由右向左滑动",
+              backgroundColor: Colors.blue,
+              textColor: Colors.white,
+              padding: .symmetric(vertical: 8.px, horizontal: 12.px),
+              borderRadius: 8.px,
+              onTap: () async {
+                AppRouter.openPage(Page1.route);
+              },
             ),
           ),
         ],
