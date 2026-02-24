@@ -1,6 +1,56 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.0.5] - 2026-02-24
+
+### Added
+- 添加 `AppRouter` 路由工具类
+  - 基于 go_router 封装的路由管理工具
+  - 支持页面跳转、替换和返回操作
+  - 提供路由创建的快捷方法
+  - 支持自定义页面转场动画
+- 添加 `MediaPicker` 媒体选择工具类
+  - `takeImage()` - 拍摄照片
+  - `takeVideo()` - 拍摄视频
+  - `chooseImage()` - 选择照片
+  - `chooseVideo()` - 选择视频
+  - `chooseMultiImage()` - 多选照片
+  - `chooseMultiVideo()` - 多选视频
+- 添加 `Button` 通用按钮组件
+  - 支持自定义样式、边框和圆角
+  - 支持点击、长按和双击事件
+  - 灵活的尺寸和间距配置
+- 添加 `EditText` 输入框组件
+  - 支持自定义文本样式和提示文本
+  - 支持多种键盘类型和输入限制
+  - 支持自定义边框和光标样式
+- 添加 `VerificationBox` 验证码输入框组件
+  - 支持 4 位或 6 位验证码输入
+  - 支持自定义框样式和焦点样式
+  - 支持显示光标和自动聚焦
+  - 输入完成自动回调
+- 添加 `ExtendedWrap` 扩展流式布局组件
+  - 支持最大行数和最小行数限制
+  - 支持溢出显示自定义组件
+  - 提供灵活的对齐和间距配置
+- 添加 `JsonUtils` JSON 处理工具类
+  - `mapToString()` - Map 转 String
+  - `stringToMap()` - String 转 Map
+  - `listToString()` - List 转 String
+  - `stringToList()` - String 转 List
+  - `mapToList()` - Map 转 List
+- 添加 `AppTransitions` 页面转场动画工具
+  - 提供多种预设的页面转场效果
+  - 支持自定义转场动画
+
+### Changed
+- 优化项目导出结构，统一管理所有模块
+- 改进代码文档和注释
+- 更新依赖版本，提升兼容性
+
+### Fixed
+- 修复部分组件的空安全处理问题
+- 修复扩展方法的类型推断问题
 
 ## [0.0.4] - 2026-01-21
 
