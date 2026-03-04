@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart/flutter_smart.dart';
-
 import 'pages/page1.dart';
 
 Future<void> main() async {

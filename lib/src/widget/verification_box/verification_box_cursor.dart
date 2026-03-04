@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// des: 模拟光标
 ///
 class VerificationBoxCursor extends StatefulWidget {
-  VerificationBoxCursor({this.color, this.width, this.indent, this.endIndent});
+  const VerificationBoxCursor({super.key, this.color, this.width, this.indent, this.endIndent});
 
   ///
   /// 光标颜色

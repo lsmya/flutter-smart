@@ -21,7 +21,8 @@ enum VerificationBoxItemType {
 /// 单个输入框
 ///
 class VerificationBoxItem extends StatelessWidget {
-  VerificationBoxItem({
+  const VerificationBoxItem({
+    super.key,
     this.data = '',
     this.textStyle,
     this.type = VerificationBoxItemType.box,
@@ -86,7 +87,7 @@ class VerificationBoxItem extends StatelessWidget {
         showCursor
             ? Positioned.fill(
                 child: VerificationBoxCursor(
-                  color: cursorColor ,
+                  color: cursorColor,
                   width: cursorWidth,
                   indent: cursorIndent,
                   endIndent: cursorEndIndent,

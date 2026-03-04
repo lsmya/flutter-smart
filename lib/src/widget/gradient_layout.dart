@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_smart/extension/extension.dart';
+
+import '../extension/extension_list.dart';
 
 /// 自定义渐变背景
 class GradientLayout extends StatelessWidget {
