@@ -36,7 +36,7 @@
 
 ```yaml
 dependencies:
-  flutter_smart: ^0.0.2
+  flutter_smart: ^0.0.6
 ```
 
 然后运行：

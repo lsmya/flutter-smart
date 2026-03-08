@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.0.6] - 2026-03-08
+
+### Changed
+- 优化 CachedImage 组件中的占位图和错误图显示逻辑
+
+
+
 ## [0.0.5] - 2026-02-24
 
 ### Added
