@@ -33,7 +33,3 @@ platforms:
   macos:
   windows:
   web:
-
-flutter:
-  assets:
-    - assets/images/

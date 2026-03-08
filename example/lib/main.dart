@@ -291,6 +291,8 @@ class _HomePageState extends State<HomePage> with EventBusMixin {
                   border: .all(color: Colors.red, width: 1.px, style: .solid),
                   height: 100.px,
                   fit: BoxFit.cover,
+                  placeholderAssets: "images/placeholder.png",
+                  errorAssets: "images/placeholder.png",
                   borderRadius: BorderRadius.circular(50),
                 ),
               ],

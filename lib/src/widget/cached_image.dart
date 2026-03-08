@@ -18,9 +18,8 @@ class CachedImage extends StatelessWidget {
   const CachedImage({
     super.key,
     required this.url,
-    this.placeholderAssets =
-        "packages/flutter_smart/assets/images/placeholder.png",
-    this.errorAssets = "packages/flutter_smart/assets/images/placeholder.png",
+    this.placeholderAssets,
+    this.errorAssets,
     this.fit,
     this.width,
     this.height,
@@ -36,29 +35,36 @@ class CachedImage extends StatelessWidget {
         url != null &&
         (url!.startsWith("http://") || url!.startsWith("https://"));
     final imageChild = url == null
-        ? Image.asset(errorAssets!, fit: fit, width: width, height: height)
+        ? (errorAssets == null
+              ? SizedBox(width: width, height: height)
+              : Image.asset(
+                  errorAssets!,
+                  fit: fit,
+                  width: width,
+                  height: height,
+                ))
         : isNetImage
         ? CachedNetworkImage(
             imageUrl: url!,
             height: height,
             width: width,
             fit: fit,
-            placeholder: (context, url) => placeholderAssets != null
-                ? Image.asset(
+            placeholder: placeholderAssets != null
+                ? (context, url) => Image.asset(
                     placeholderAssets!,
                     fit: fit,
                     width: width,
                     height: height,
                   )
-                : SizedBox(),
-            errorWidget: (context, url, error) => errorAssets != null
-                ? Image.asset(
+                : null,
+            errorWidget: errorAssets != null
+                ? ((context, url, error) => Image.asset(
                     errorAssets!,
                     fit: fit,
                     width: width,
                     height: height,
-                  )
-                : SizedBox(),
+                  ))
+                : null,
           )
         : Image.file(File(url!), fit: fit, width: width, height: height);
 
